@@ -1,0 +1,29 @@
+### CFWheels Blog based on Litepost ###
+### author: Cathy Shapiro ###
+### cathy@flashprodesign.com ###
+
+Convention Over Configuration in CFWheels
+-----------------------------------------
+
+IMPORTANT* 
+CFWheels will look for a datasource name the same as your folder name, so if you name your DSN the same as your folder you will not need to specify a DSN in CFWheels 
+
+DATABASE CoC*
+CFWheels expects all tables to end with an 's'
+CFWheels expects all ids to be named 'id'
+CFWheels looks for datetime fields named 'createdAt', 'updatedAt', and 'deletedAt' in your tables and if they are present will automatically populate them
+
+INSTALLATION
+
+To install, create a directory called litepost 
+create a new database from the litepost.sql file
+Name your ColdFusion DSN 'litepost'
+
+*If you don't name your datasource the same as your folder, you can tell CFWheels where to look for it in the config/settings.cfm file
+
+SCAFFOLDING
+
+Raul Riera has created a great scaffolding plugin available at cfwheels.org that I used to create all the CRUD. You might want to check to see if there is a new version of this plugin
+
+Adding plugins is easy in CFWheels, just download the zip file and then drop the zip into the plugins directory. CFWheels will unpack it and overwrite the previous version of the plugin
+
