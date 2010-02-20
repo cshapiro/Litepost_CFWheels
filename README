@@ -2,6 +2,8 @@
 ### author: Cathy Shapiro ###
 ### cathy@flashprodesign.com ###
 
+This project was started to create a Litepost blog in CFWheels
+
 Convention Over Configuration in CFWheels
 -----------------------------------------
 
@@ -16,14 +18,14 @@ CFWheels looks for datetime fields named 'createdAt', 'updatedAt', and 'deletedA
 INSTALLATION
 
 To install, create a directory called litepost 
-create a new database from the litepost.sql file
+create a new database from the litepost.sql file (located in the db folder)
 Name your ColdFusion DSN 'litepost'
 
 *If you don't name your datasource the same as your folder, you can tell CFWheels where to look for it in the config/settings.cfm file
 
 SCAFFOLDING
 
-Raul Riera has created a great scaffolding plugin available at cfwheels.org that I used to create all the CRUD. You might want to check to see if there is a new version of this plugin
+Raul Riera has created a great scaffolding plugin available at cfwheels.org that I used to create all the CRUD. If you are adding more tables, you might want to check to see if there is a new version of this plugin
 
 Adding plugins is easy in CFWheels, just download the zip file and then drop the zip into the plugins directory. CFWheels will unpack it and overwrite the previous version of the plugin
 
