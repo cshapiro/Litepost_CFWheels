@@ -2,7 +2,8 @@
 	
 	<!--- comments/index --->
 	<cffunction name="index">
-		<cfset comments = model("Comment").findAll()>
+		<cfset comments = model("Comment").findAll(order="dateCreated DESC")>
+		
 	</cffunction>
 	
 	<!--- comments/show/key --->

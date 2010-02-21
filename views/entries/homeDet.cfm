@@ -1,7 +1,7 @@
 <!--- TODO: add anchor to comments (coming from home page) --->
 <!--- entries by id --->
 <!--- add link to user --->
-<cfset comment.entryID = "#params.key#">
+<cfset makecomment.entryID = "#params.key#">
 <div id="content">
 
 <cfoutput>		
@@ -13,7 +13,7 @@ Posted: #dateFormat(entry.dateCreated, 'mmmm d, yyyy')#<br><br>
 
 <h3>Comments</h3><br>
 
-<cfoutput query="comments">
+<cfoutput query="thiscomments">
 <div class="comments">
 <p>#comment#<br><em>Posted by</em> #linkTo(text="#name#", action="mailto:#email#")# website: #url# Created: #dateCreated#</p>
 </div>
@@ -23,17 +23,17 @@ Posted: #dateFormat(entry.dateCreated, 'mmmm d, yyyy')#<br><br>
 <!--- TODO: make comment, name and email required --->
 <cfoutput>
 	#startFormTag(action="createNewComment")#
-	#errorMessagesFor("comment")#
+	#errorMessagesFor("makecomment")#
 	
-							#textField(objectName='comment', property='name', label='Name')#
+							#textField(objectName='makecomment', property='name', label='Name')#
 						
-							#textField(objectName='comment', property='email', label='Email')#
+							#textField(objectName='makecomment', property='email', label='Email')#
 						
-							#textField(objectName='comment', property='url', label='Website')#
+							#textField(objectName='makecomment', property='url', label='Website')#
 						
-							#textArea(objectName='comment', property='comment', label='Comment')#
+							#textArea(objectName='makecomment', property='comment', label='Comment')#
 							
-							#hiddenField(objectName="comment", property="entryID")#
+							#hiddenField(objectName="makecomment", property="entryID")#
 							
 	#submitTag(value="Add your comment")#
 					

@@ -15,9 +15,9 @@
 				
 					<cfcol header="Title" text="#title#" />
 				
-					<cfcol header="Date Created" text="#dateCreated#" />
+					<cfcol header="Date Created" text="#dateFormat(dateCreated, 'm/dd/yyyy')# #timeFormat(dateCreated, 'h:mm tt')#" />
 				
-					<cfcol header="Date Last Updated" text="#dateLastUpdated#" />
+					<cfcol header="Date Last Updated" text="#dateFormat(dateLastUpdated, 'm/dd/yyyy')# #timeFormat(dateLastUpdated, 'h:mm tt')#" />
 				
 	<cfcol header="" text="#linkTo(text='Show', action='show', key=entryID)#" />
 	<cfcol header="" text="#linkTo(text='Edit', action='edit', key=entryID)#" />

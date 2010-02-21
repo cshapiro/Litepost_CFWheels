@@ -2,28 +2,28 @@
 	
 	<!--- entries/home --->
 	<cffunction name="home">
-		<cfset entries = model("Entry").findAll(include="user")>
+		<cfset entries = model("Entry").findAll(include="user", order="dateCreated DESC", maxRows="5")>
 		<cfset categories = model("Category").findAll()>
-		<!---<cfset comments = model("Comment").findAll()>--->
 		<cfset bookmarks = model("Bookmark").findAll()>
+		<cfset comments = model("Comment").findAll(include="entry", order="dateCreated DESC", maxRows="5" )>
 	</cffunction>
 	
 	<cffunction name="homeDet">
 		<cfset entry = model("Entry").findOne(where="entryID=#params.key#", include="user")>
 		<cfset entries = model("Entry").findAll(include="user")>
 		<cfset categories = model("Category").findAll()>
-		<cfset comments = model("Comment").findAll(where="entryID=#params.key#")>
-		<cfset comment = model("Comment").new()>
+		<cfset thiscomments = model("Comment").findAll(where="entryID=#params.key#")>
+		<cfset makecomment = model("Comment").new()>
+		<cfset comments = model("Comment").findAll(include="entry", order="dateCreated DESC", maxRows="5")>
 		<cfset bookmarks = model("Bookmark").findAll()>
-		<!---<cfdump var="#entry#">
-		<cfabort>--->
 	</cffunction>
 	
 	<cffunction name="homeCat">
-		<cfset catentries = model("Entry").findAll(where="categoryID=#params.key#", include="user")>
+		<cfset catentries = model("Entry").findAll(where="categoryID=#params.key#", include="user", order="dateCreated DESC")>
 		<cfset catname = model("Category").findOne(where="categoryID=#params.key#")>
-		<cfset entries = model("Entry").findAll(include="user")>
+		<!---<cfset entries = model("Entry").findAll(include="user")>--->
 		<cfset categories = model("Category").findAll()>
+		<cfset comments = model("Comment").findAll(include="entry", order="dateCreated DESC", maxRows="5")>
 		<cfset bookmarks = model("Bookmark").findAll()>
 	</cffunction>
 	
@@ -33,22 +33,22 @@
 		display success or failure ...  --->
 		<!--- TODO: I need to email the comment to me and I need to approve it before it will be posted
 		so probably need to add some kind of flag to comments table --->
-		<cfset comment = model("Comment").new(params.comment)>
+		<cfset comment = model("Comment").new(params.makecomment)>
 		
 		<!--- Verify that the comment creates successfully --->
 		<cfif comment.save()>
 			<cfset flashInsert(success="The comment was created successfully.")>
-            <cfset redirectTo(controller="entries", action="home")>
+            <cfset redirectTo(controller="entries", action="homeDet", key="#makecomment.entryID#")>
 		<!--- Otherwise --->
 		<cfelse>
 			<cfset flashInsert(error="There was an error creating the comment.")>
-			<cfset renderPage(controller="entries", action="homeDet", key="#comment.entryID#")>
+			<cfset renderPage(controller="entries", action="homeDet", key="#makecomment.entryID#")>
 		</cfif>
 	</cffunction>
 	
 	<!--- entries/index --->
 	<cffunction name="index">
-		<cfset entries = model("Entry").findAll()>
+		<cfset entries = model("Entry").findAll(order="dateCreated DESC")>
 	</cffunction>
 	
 	<!--- entries/show/key --->
